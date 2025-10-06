@@ -1,11 +1,16 @@
-name: Events Demo 1
-on: ...
+name: Build Validation
+on: 
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches:
+      - main
+    paths-ignore: 
+      - '.github/**'
+
 jobs:
-  deploy:
+  check:
     runs-on: ubuntu-latest
     steps:
-      - name: Output event data
-        run: echo "${{ toJSON(github.event) }}"
       - name: Get code
         uses: actions/checkout@v3
       - name: Install dependencies
